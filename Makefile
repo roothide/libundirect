@@ -1,6 +1,9 @@
 ifeq ($(THEOS_PACKAGE_SCHEME),rootless)
 TARGET := iphone:clang:16.2:15.0
 ARCHS := arm64 arm64e
+else ifeq ($(THEOS_PACKAGE_SCHEME),roothide)
+TARGET := iphone:clang:16.2:15.0
+ARCHS := arm64 arm64e
 else
 TARGET := iphone:clang:14.5:7.0
 ARCHS := armv7 armv7s arm64 arm64e
@@ -14,6 +17,8 @@ libundirect_FILES = libundirect.m HookCompat.m
 libundirect_CFLAGS = -fobjc-arc
 ifeq ($(THEOS_PACKAGE_SCHEME),rootless)
 libundirect_LDFLAGS += -install_name @rpath/libundirect.dylib
+else ifeq ($(THEOS_PACKAGE_SCHEME),roothide)
+libundirect_LDFLAGS += -install_name @loader_path/.jbroot/usr/lib/libundirect.dylib
 endif
 libundirect_INSTALL_PATH = /usr/lib
 libundirect_EXTRA_FRAMEWORKS = CydiaSubstrate

@@ -13,8 +13,8 @@
 #import <dlfcn.h>
 #import "substrate.h"
 #import <libhooker.h>
-#import <rootless.h>
-#define LIBUNDIRECT_PATH ROOT_PATH("/usr/lib/libundirect.dylib")
+#import <roothide.h>
+#define LIBUNDIRECT_PATH jbroot("/usr/lib/libundirect.dylib")
 
 #ifdef __cplusplus
 extern "C" {
